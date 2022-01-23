@@ -1,0 +1,35 @@
+{
+  "name": "tailwindcss-plugin-defaults",
+  "author": "Bill Kerr <bk7987@gmail.com>",
+  "homepage": "https://github.com/bill-kerr/tailwindcss-plugin-defaults/blob/main/README.md",
+  "description": "",
+  "license": "MIT",
+  "main": "./dist/tailwindcss-plugin-defaults.umd.js",
+  "module": "./dist/tailwindcss-plugin-defaults.es.js",
+  "keywords": [
+    "tailwindcss",
+    "tailwind",
+    "default",
+    "defaults",
+    "css",
+    "components",
+    "override",
+    "overrides"
+  ],
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.15",
+    "vite": "^2.7.2"
+  },
+  "dependencies": {
+    "postcss-selector-parser": "^6.0.9"
+  }
+}
