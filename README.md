@@ -34,12 +34,12 @@ Remove the `@tailwind base;` directive from your CSS file.
 @tailwind utilities;
 ```
 
-If you're not using `postcss`, copy the contents of our modified `preflight.css` (URL_GOES_HERE) to the top of `styles.css` where `@tailwind base;` used to be.
+If you're not using `postcss`, copy the contents of our modified [preflight.css](https://unpkg.com/tailwindcss-plugin-defaults@0.0.9/src/preflight.css) to the top of `styles.css` where `@tailwind base;` used to be.
 
 If you are using `postcss` with `postcss-import`, change your CSS file to the following:
 
 ```css
-@import 'tailwindcss-plugin-import/preflight.css';
+@import 'tailwindcss-plugin-import/src/preflight.css';
 @tailwind components;
 @tailwind utilities;
 ```
