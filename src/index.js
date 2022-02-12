@@ -67,15 +67,23 @@ function transformAllSelectors(transformSelector, { wrap, withRule } = {}) {
   };
 }
 
-const defaults = plugin(function ({ addVariant, e, config }) {
-  addVariant(
-    'd',
-    transformAllSelectors(selector => {
-      return updateAllClasses(selector, (className, { withPseudo }) => {
-        return withPseudo(className, `:where(.${e(`d${config('separator')}${className}`)})`);
-      });
-    })
-  );
+const defaults = plugin.withOptions(function (options = {}) {
+  const modifier =
+    options.modifier && typeof options.modifier === 'string' ? options.modifier : 'd';
+
+  return function ({ addVariant, e, config }) {
+    addVariant(
+      modifier,
+      transformAllSelectors(selector => {
+        return updateAllClasses(selector, (className, { withPseudo }) => {
+          return withPseudo(
+            className,
+            `:where(.${e(`${modifier}${config('separator')}${className}`)})`
+          );
+        });
+      })
+    );
+  };
 });
 
 module.exports = defaults;
