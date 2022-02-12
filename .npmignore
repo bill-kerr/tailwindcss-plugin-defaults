@@ -1,6 +1,5 @@
 node_modules
 .vscode
-src
 .nvmrc
 package-lock.json
 vite.config.js
