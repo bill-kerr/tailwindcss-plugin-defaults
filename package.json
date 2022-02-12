@@ -24,8 +24,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "compile": "npx tailwindcss -i tailwind.css -o styles.css",
-    "compile:watch": "npx tailwindcss -i tailwind.css -o styles.css --watch"
+    "compile": "npx tailwindcss -i tailwind.css -o ./build/styles.css",
+    "compile:watch": "npx tailwindcss -i tailwind.css -o ./build/styles.css --watch"
   },
   "peerDependencies": {
     "tailwindcss": "^3.0.22"
