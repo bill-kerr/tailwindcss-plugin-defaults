@@ -1,6 +1,6 @@
 ## tailwindcss-plugin-defaults
 
-A TailwindCSS plugin that gives component authors default, override-able classes.
+A Tailwind CSS plugin that gives component authors default, override-able classes.
 
 ## Quick Start
 
@@ -44,7 +44,7 @@ function CardList() {
 
 ## Why
 
-Providing override-able, default styles is a well-known issue for users of TailwindCSS who wish to build reusable components. Without `tailwindcss-plugin-defaults`, the following element will have a background color of `bg-green-900` despite it being defined earlier in the class list. This is because `bg-green-900` is defined _later_ in the css file.
+Providing override-able, default styles is a well-known issue for users of Tailwind CSS who wish to build reusable components. Without `tailwindcss-plugin-defaults`, the following element will have a background color of `bg-green-900` despite it being defined earlier in the class list. This is because `bg-green-900` is defined _later_ in the css file.
 
 ```html
 <div class="bg-green-900 bg-green-50">My background color is bg-green-900 😢</div>
