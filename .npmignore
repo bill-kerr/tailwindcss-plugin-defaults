@@ -4,3 +4,8 @@ node_modules
 package-lock.json
 vite.config.js
 .gitignore
+tailwind.config.js
+tailwind.css
+styles.css
+index.html
+postcss.config.js

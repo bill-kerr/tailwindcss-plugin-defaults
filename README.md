@@ -8,6 +8,8 @@ A Tailwind CSS plugin that gives component authors default, override-able classe
 npm i tailwindcss-plugin-defaults
 ```
 
+Add the plugin to your `tailwind.config.js` file.
+
 ```js
 // tailwind.config.js
 
@@ -20,6 +22,26 @@ module.exports = {
   },
   plugins: [defaults],
 };
+```
+
+Remove the `@tailwind base;` directive from your CSS file.
+
+```diff
+// styles.css
+
+-@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+If you're not using `postcss`, copy the contents of our modified `preflight.css` (URL_GOES_HERE) to the top of `styles.css` where `@tailwind base;` used to be.
+
+If you are using `postcss` with `postcss-import`, change your CSS file to the following:
+
+```css
+@import 'tailwindcss-plugin-import/preflight.css';
+@tailwind components;
+@tailwind utilities;
 ```
 
 ```jsx
@@ -55,6 +77,10 @@ With `tailwindcss-plugin-defaults`, we can change that behavior.
 ```html
 <div class="d:bg-green-900 bg-green-50">My background color is bg-green-50! 😄</div>
 ```
+
+## How
+
+Brief description on how we do this.
 
 ## Configuration
 

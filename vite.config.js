@@ -8,4 +8,7 @@ module.exports = defineConfig({
       name: 'react-dynamic-debounce',
     },
   },
+  server: {
+    port: 3001,
+  },
 });
