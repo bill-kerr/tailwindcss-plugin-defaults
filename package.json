@@ -7,7 +7,9 @@
   "main": "./dist/tailwindcss-plugin-defaults.umd.js",
   "module": "./dist/tailwindcss-plugin-defaults.es.js",
   "files": [
-    "./src/preflight.css"
+    "./src/preflight.css",
+    "./dist/tailwindcss-plugin-defaults.umd.js",
+    "./dist/tailwindcss-plugin-defaults.es.js"
   ],
   "keywords": [
     "tailwindcss",
