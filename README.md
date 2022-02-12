@@ -39,7 +39,7 @@ If you're not using `postcss`, copy the contents of our modified [preflight.css]
 If you are using `postcss` with `postcss-import`, change your CSS file to the following:
 
 ```css
-@import 'tailwindcss-plugin-import/preflight.css';
+@import 'tailwindcss-plugin-import/src/preflight.css';
 @tailwind components;
 @tailwind utilities;
 ```
