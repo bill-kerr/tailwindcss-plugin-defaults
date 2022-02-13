@@ -78,6 +78,8 @@ const defaults = plugin.withOptions(function (options = {}) {
       );
     }
 
+    addBase(createBaseStyles(theme));
+
     addVariant(
       modifier,
       transformAllSelectors(selector => {
@@ -92,8 +94,6 @@ const defaults = plugin.withOptions(function (options = {}) {
         });
       })
     );
-    const styles = createBaseStyles(theme);
-    addBase(styles);
   };
 });
 
