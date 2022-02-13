@@ -61,6 +61,9 @@ module.exports = {
   theme: {
     extend: {},
   },
+  corePlugins: {
+    preflight: false,
+  },
   plugins: [defaults({ modifier: 'default' })],
 };
 ```
