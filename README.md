@@ -8,7 +8,7 @@ A Tailwind CSS plugin that gives component authors default, override-able classe
 npm i tailwindcss-plugin-defaults
 ```
 
-Add the plugin to your `tailwind.config.js` file.
+Add the plugin to your `tailwind.config.js` file and disable the default `preflight` CSS reset (see [How](#how) for why we need to do this. Don't worry, we still provide the same resest).
 
 ```js
 // tailwind.config.js
@@ -20,28 +20,11 @@ module.exports = {
   theme: {
     extend: {},
   },
+  corePlugins: {
+    preflight: false,
+  },
   plugins: [defaults],
 };
-```
-
-Remove the `@tailwind base;` directive from your CSS file.
-
-```diff
-// styles.css
-
--@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-
-If you're not using `postcss`, copy the contents of our modified [preflight.css](https://unpkg.com/tailwindcss-plugin-defaults@0.0.9/src/preflight.css) to the top of `styles.css` where `@tailwind base;` used to be.
-
-If you are using `postcss` with `postcss-import`, change your CSS file to the following:
-
-```css
-@import 'tailwindcss-plugin-import/src/preflight.css';
-@tailwind components;
-@tailwind utilities;
 ```
 
 ```jsx
@@ -63,24 +46,6 @@ function CardList() {
   );
 }
 ```
-
-## Why
-
-Providing override-able, default styles is a well-known issue for users of Tailwind CSS who wish to build reusable components. Without `tailwindcss-plugin-defaults`, the following element will have a background color of `bg-green-900` despite it being defined earlier in the class list. This is because `bg-green-900` is defined _later_ in the css file.
-
-```html
-<div class="bg-green-900 bg-green-50">My background color is bg-green-900 😢</div>
-```
-
-With `tailwindcss-plugin-defaults`, we can change that behavior.
-
-```html
-<div class="d:bg-green-900 bg-green-50">My background color is bg-green-50! 😄</div>
-```
-
-## How
-
-Brief description on how we do this.
 
 ## Configuration
 
@@ -105,3 +70,39 @@ Now your modifier for default classes can be used as such.
 ```html
 <div class="default:bg-gray-100">You can change the modifier!</div>
 ```
+
+## Why
+
+Providing override-able, default styles is a well-known issue for users of Tailwind CSS who wish to build reusable components. Without `tailwindcss-plugin-defaults`, the following element will have a background color of `bg-green-900` despite it being defined earlier in the class list. This is because `bg-green-900` is defined _later_ in the css file.
+
+```html
+<div class="bg-green-900 bg-green-50">My background color is bg-green-900 😢</div>
+```
+
+With `tailwindcss-plugin-defaults`, we can change that behavior.
+
+```html
+<div class="d:bg-green-900 bg-green-50">My background color is bg-green-50! 😄</div>
+```
+
+## How
+
+Default classes make use of the [`:where()` pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:where). The `:where()` pseudo-class drops their specificity to 0, allowing them to be overridden by any CSS declaration. The default class for `mt-4` would look like:
+
+```css
+:where(.d\:mt-4) {
+  margin-top: 1rem;
+}
+```
+
+This now allows base components to implement `d:mt-4` and colliding margin utilities such as `mt-1` will now supersede the default utility.
+
+This is great, but because `:where()` drops the specificity to 0, base styles like the following are more specific.
+
+```css
+button {
+  background-color: transparent;
+}
+```
+
+This means `d:bg-red-100` applied to a button will do nothing. To solve that, `tailwindcss-plugin-defaults` provides its own CSS reset, which lowers the specificity of the reset by--you guessed it--wrapping those declarations in `:where()`. Not to worry, it does the same things as the default Tailwind CSS preflight.

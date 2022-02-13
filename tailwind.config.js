@@ -6,4 +6,7 @@ module.exports = {
     extend: {},
   },
   plugins: [defaults],
+  corePlugins: {
+    preflight: false,
+  },
 };

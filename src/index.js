@@ -1,5 +1,6 @@
 const plugin = require('tailwindcss/plugin');
 const selectorParser = require('postcss-selector-parser');
+const createBaseStyles = require('./base-styles');
 
 function isKeyframeRule(rule) {
   return rule.parent && rule.parent.type === 'atrule' && /keyframes$/.test(rule.parent.name);
@@ -71,11 +72,14 @@ const defaults = plugin.withOptions(function (options = {}) {
   const modifier =
     options.modifier && typeof options.modifier === 'string' ? options.modifier : 'd';
 
-  return function ({ addVariant, e, config }) {
+  return function ({ addVariant, e, config, addBase, theme }) {
     addVariant(
       modifier,
       transformAllSelectors(selector => {
         return updateAllClasses(selector, (className, { withPseudo }) => {
+          /**
+           * TODO: do we need the class name preceding this?
+           */
           return withPseudo(
             className,
             `:where(.${e(`${modifier}${config('separator')}${className}`)})`
@@ -83,6 +87,9 @@ const defaults = plugin.withOptions(function (options = {}) {
         });
       })
     );
+    const styles = createBaseStyles(theme);
+    console.log(styles);
+    addBase(styles);
   };
 });
 
