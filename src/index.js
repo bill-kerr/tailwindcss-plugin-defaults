@@ -72,6 +72,12 @@ const defaults = plugin.withOptions(function (options = {}) {
     options.modifier && typeof options.modifier === 'string' ? options.modifier : 'd';
 
   return function ({ addVariant, e, config, addBase, theme }) {
+    if (config('corePlugins').includes('preflight')) {
+      console.warn(
+        'tailwindcss-plugin-defaults detected preflight among your core plugins. Default classes will not work in all cases unless you disable it.'
+      );
+    }
+
     addVariant(
       modifier,
       transformAllSelectors(selector => {
@@ -87,7 +93,6 @@ const defaults = plugin.withOptions(function (options = {}) {
       })
     );
     const styles = createBaseStyles(theme);
-    console.log(styles);
     addBase(styles);
   };
 });
