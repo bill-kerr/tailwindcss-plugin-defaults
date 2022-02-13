@@ -65,7 +65,7 @@ module.exports = {
 };
 ```
 
-Now your modifier for default classes can be used as such.
+Now your modifier for default classes can be used as follows.
 
 ```html
 <div class="default:bg-gray-100">You can change the modifier!</div>
@@ -73,7 +73,7 @@ Now your modifier for default classes can be used as such.
 
 ## Why
 
-Providing override-able, default styles is a well-known issue for users of Tailwind CSS who wish to build reusable components. Without `tailwindcss-plugin-defaults`, the following element will have a background color of `bg-green-900` despite it being defined earlier in the class list. This is because `bg-green-900` is defined _later_ in the css file.
+Providing override-able, default styles is a well-known issue for users of Tailwind CSS who wish to build reusable components. Without `tailwindcss-plugin-defaults`, the following element will have a background color of `bg-green-900` despite it being defined earlier in the class list. This is because `bg-green-900` is defined _later_ in the CSS file.
 
 ```html
 <div class="bg-green-900 bg-green-50">My background color is bg-green-900 😢</div>
@@ -87,7 +87,7 @@ With `tailwindcss-plugin-defaults`, we can change that behavior.
 
 ## How
 
-Default classes make use of the [`:where()` pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:where). The `:where()` pseudo-class drops their specificity to 0, allowing them to be overridden by any CSS declaration. The default class for `mt-4` would look like:
+Default classes make use of the [`:where()` pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:where). The `:where()` pseudo-class drops specificity to 0, allowing classes to be overridden by any CSS declaration. The default class for `mt-4` would look like:
 
 ```css
 :where(.d\:mt-4) {
