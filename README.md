@@ -52,6 +52,7 @@ function CardList() {
 The [official TailwindCSS documentation](https://tailwindcss.com/docs/hover-focus-and-other-states#ordering-stacked-modifiers) on stacked modifier ordering states that modifiers are applied from _the inside out_. This means that ordering modifiers like this:
 
 ```html
+<!-- INCORRECT -->
 <div class="d:hover:bg-red-100" />
 ```
 
@@ -69,6 +70,7 @@ This is probably not what you want, because the `:hover` pseudo class does not i
 Therefore, when writing default classes, it is of utmost importance to keep the `d:` modifier in the _*innermost*_ position:
 
 ```html
+<!-- CORRECT -->
 <div class="hover:d:bg-red-100" />
 ```
 
