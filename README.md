@@ -8,7 +8,7 @@ A Tailwind CSS plugin that gives component authors default, override-able classe
 npm i tailwindcss-plugin-defaults
 ```
 
-Add the plugin to your `tailwind.config.js` file and disable the default `preflight` CSS reset (see [How](#how) for why we need to do this. Don't worry, we still provide the same resest).
+Add the plugin to your `tailwind.config.js` file and disable the default `preflight` CSS reset (see [How](#how) for why we need to do this. Don't worry, we still provide the same reset).
 
 ```js
 // tailwind.config.js
@@ -44,6 +44,40 @@ function CardList() {
       <Card />
     </div>
   );
+}
+```
+
+## Stacked Modifier Ordering
+
+The [official TailwindCSS documentation](https://tailwindcss.com/docs/hover-focus-and-other-states#ordering-stacked-modifiers) on stacked modifier ordering states that modifiers are applied from _the inside out_. This means that ordering modifiers like this:
+
+```html
+<div class="d:hover:bg-red-100" />
+```
+
+Will result in CSS that looks like this:
+
+```css
+:where(.d\:hover\:bg-red-100:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+```
+
+This is probably not what you want, because the `:hover` pseudo class does not increase the specificity of this CSS statement and will collide with all other background color utilities.
+
+Therefore, when writing default classes, it is of utmost importance to keep the `d:` modifier in the _*innermost*_ position:
+
+```html
+<div class="hover:d:bg-red-100" />
+```
+
+Now, the correct CSS is generated:
+
+```css
+:where(.hover\:d\:bg-red-100):hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
 }
 ```
 
