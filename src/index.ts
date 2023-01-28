@@ -15,4 +15,4 @@ const defaults = plugin.withOptions(function (options: DefaultsOptions = {}) {
   };
 });
 
-export default defaults;
+export = defaults;

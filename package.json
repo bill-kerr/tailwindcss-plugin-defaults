@@ -2,7 +2,7 @@
   "name": "tailwindcss-plugin-defaults",
   "author": "Bill Kerr <bk7987@gmail.com>",
   "homepage": "https://github.com/bill-kerr/tailwindcss-plugin-defaults/blob/main/README.md",
-  "description": "",
+  "description": "A Tailwind CSS plugin that gives component authors default, override-able classes.",
   "license": "MIT",
   "main": "./dist/tailwindcss-plugin-defaults.umd.js",
   "module": "./dist/tailwindcss-plugin-defaults.es.js",
