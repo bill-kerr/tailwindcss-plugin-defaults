@@ -11,7 +11,7 @@ const defaults = plugin.withOptions(function (options: DefaultsOptions = {}) {
       : "d";
 
   return function ({ addVariant }) {
-    addVariant(modifier, () => "html:where(&)");
+    addVariant(modifier, () => "html :where(&)");
   };
 });
 
