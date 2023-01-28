@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "./dist/tailwindcss-plugin-defaults.umd.js",
   "module": "./dist/tailwindcss-plugin-defaults.es.js",
+  "types": "./dist/index.d.ts",
   "keywords": [
     "tailwindcss",
     "tailwind",
