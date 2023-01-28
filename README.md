@@ -8,20 +8,17 @@ A Tailwind CSS plugin that gives component authors default, override-able classe
 npm i tailwindcss-plugin-defaults
 ```
 
-Add the plugin to your `tailwind.config.js` file and disable the default `preflight` CSS reset (see [How](#how) for why we need to do this. Don't worry, we still provide the same reset).
+Add the plugin to your `tailwind.config.js` file.
 
 ```js
 // tailwind.config.js
 
-const defaults = require('tailwindcss-plugin-defaults');
+const defaults = require("tailwindcss-plugin-defaults");
 
 module.exports = {
-  content: [''],
+  content: [""],
   theme: {
     extend: {},
-  },
-  corePlugins: {
-    preflight: false,
   },
   plugins: [defaults],
 };
@@ -90,17 +87,14 @@ To use a modifier other than the default `d:`, pass in a `modifier` configuratio
 ```js
 // tailwind.config.js
 
-const defaults = require('tailwindcss-plugin-defaults');
+const defaults = require("tailwindcss-plugin-defaults");
 
 module.exports = {
-  content: [''],
+  content: [""],
   theme: {
     extend: {},
   },
-  corePlugins: {
-    preflight: false,
-  },
-  plugins: [defaults({ modifier: 'default' })],
+  plugins: [defaults({ modifier: "default" })],
 };
 ```
 
@@ -115,13 +109,17 @@ Now your modifier for default classes can be used as follows.
 Providing override-able, default styles is a well-known issue for users of Tailwind CSS who wish to build reusable components. Without `tailwindcss-plugin-defaults`, the following element will have a background color of `bg-green-900` despite it being defined earlier in the class list. This is because `bg-green-900` is defined _later_ in the CSS file.
 
 ```html
-<div class="bg-green-900 bg-green-50">My background color is bg-green-900 😢</div>
+<div class="bg-green-900 bg-green-50">
+  My background color is bg-green-900 😢
+</div>
 ```
 
 With `tailwindcss-plugin-defaults`, we can change that behavior.
 
 ```html
-<div class="d:bg-green-900 bg-green-50">My background color is bg-green-50! 😄</div>
+<div class="d:bg-green-900 bg-green-50">
+  My background color is bg-green-50! 😄
+</div>
 ```
 
 ## How
@@ -129,7 +127,7 @@ With `tailwindcss-plugin-defaults`, we can change that behavior.
 Default classes make use of the [`:where()` pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:where). The `:where()` pseudo-class drops specificity to 0, allowing classes to be overridden by any CSS declaration. The default class for `mt-4` would look like:
 
 ```css
-:where(.d\:mt-4) {
+html :where(.d\:mt-4) {
   margin-top: 1rem;
 }
 ```

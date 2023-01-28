@@ -1,7 +1,7 @@
-const defaults = require('./src/index');
+const defaults = require("./dist/tailwindcss-plugin-defaults.umd");
 
 module.exports = {
-  content: ['index.html'],
+  content: ["index.html"],
   theme: {
     extend: {},
   },
