@@ -56,7 +56,7 @@ The [official TailwindCSS documentation](https://tailwindcss.com/docs/hover-focu
 Will result in CSS that looks like this:
 
 ```css
-:where(.d\:hover\:bg-red-100:hover) {
+html :where(.d\:hover\:bg-red-100:hover) {
   --tw-bg-opacity: 1;
   background-color: rgb(254 226 226 / var(--tw-bg-opacity));
 }
@@ -74,7 +74,7 @@ Therefore, when writing default classes, it is of utmost importance to keep the 
 Now, the correct CSS is generated:
 
 ```css
-:where(.hover\:d\:bg-red-100):hover {
+html :where(.hover\:d\:bg-red-100):hover {
   --tw-bg-opacity: 1;
   background-color: rgb(254 226 226 / var(--tw-bg-opacity));
 }
@@ -133,13 +133,3 @@ html :where(.d\:mt-4) {
 ```
 
 This now allows base components to implement `d:mt-4` and colliding margin utilities such as `mt-1` will now supersede the default utility.
-
-This is great, but because `:where()` drops the specificity to 0, base styles like the following are more specific.
-
-```css
-button {
-  background-color: transparent;
-}
-```
-
-This means `d:bg-red-100` applied to a button will do nothing. To solve that, `tailwindcss-plugin-defaults` provides its own CSS reset, which lowers the specificity of the reset by--you guessed it--wrapping those declarations in `:where()`. Not to worry, it does the same things as the default Tailwind CSS preflight.
